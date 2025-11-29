@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Common gradient/background and button styles used across the app */
+.bg-primary-gradient {
+  background: linear-gradient(135deg, #ff7a59 0%, #ff6bcb 60%);
+}
+
+.bg-primary-gradient-circle {
+  background: linear-gradient(135deg, #ff7a59 0%, #ff6bcb 60%);
+  border-radius: 50%;
+  opacity: 0.95;
+}
+
+.gradient-btn {
+  background: linear-gradient(135deg, #ff7a59 0%, #ff6bcb 60%);
+  color: #ffffff !important;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+  border: none !important;
+}
+.gradient-btn:hover {
+  filter: brightness(0.95);
+}
+
+.btn-outline {
+  border: 1px solid rgba(0,0,0,0.12) !important;
+}
+
+.task-card {
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.task-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: rgb(25, 118, 210);
+  transition: width 0.3s ease;
+}
+
+.task-card:hover::after {
+  width: 100%;
+}
+.task-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.heading-class {
+  position: relative;
+  font-weight: 700;
+}
+.heading-class::after {
+   content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+ width: 100%;
+  background: rgb(25, 118, 210);
+  border-radius: 50px;
+}
