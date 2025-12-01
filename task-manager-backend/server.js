@@ -4,7 +4,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
@@ -17,26 +16,22 @@ res.send("Backend is running...");
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/tasks', require('./routes/tasks'));
 
-// Use PORT from environment or fallback to 5000
 const PORT = process.env.PORT || 5000;
 
-// Get MongoDB URI from environment
+// Validate Mongo URI
 const mongoUri = process.env.MONGO_URI;
 if (!mongoUri) {
-console.error("Error: MONGO_URI is not defined. Please set it in .env or Render dashboard.");
+console.error("❌ ERROR: MONGO_URI is not defined.");
 process.exit(1);
 }
 
-// Connect to MongoDB and start server
-mongoose.connect(mongoUri, {
-useNewUrlParser: true,
-useUnifiedTopology: true
-})
+// Connect (NO deprecated options)
+mongoose.connect(mongoUri)
 .then(() => {
-console.log("MongoDB connected successfully.");
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+console.log("✅ MongoDB connected");
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 })
 .catch(err => {
-console.error("MongoDB connection error:", err);
+console.error("❌ MongoDB connection error:", err);
 process.exit(1);
 });
