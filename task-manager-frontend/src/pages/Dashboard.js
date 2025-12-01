@@ -10,7 +10,7 @@ import { NotificationContext } from '../contexts/NotificationContext';
 import AddEditTask from './AddEditTask';
 
 
-export default function Dashboard(){
+export default function Dashboard() {
   const { user } = useContext(AuthContext);
   const { showNotification } = useContext(NotificationContext);
   const [tasks, setTasks] = useState([]);
@@ -21,9 +21,9 @@ export default function Dashboard(){
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
   const limit = 6;
-  
 
-  const load = async (p=1) => {
+
+  const load = async (p = 1) => {
     const res = await getTasks(p, limit);
     setTasks(res.data.tasks);
     setPages(res.data.pages);
@@ -36,37 +36,42 @@ export default function Dashboard(){
   };
 
   const confirmDelete = async () => {
-    try{
+    try {
       await deleteTask(taskToDelete);
       showNotification('Task deleted successfully', 'info');
       setDeleteDialogOpen(false);
       setTaskToDelete(null);
       load(page);
-    } catch(err){
+    } catch (err) {
       showNotification(err.response?.data?.message || 'Delete failed', 'error');
       setDeleteDialogOpen(false);
       setTaskToDelete(null);
     }
   };
 
-  useEffect(()=>{ load(); }, []);
+  useEffect(() => { load(); }, []);
 
   return (
     <Container>
-      <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', mb:2}}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Typography variant="h5" className='heading-class'>Tasks</Typography>
-        <Button variant="contained" onClick={()=>{ setEditingTask(null); setModalOpen(true); }}>Add Task</Button>
+        <Button variant="contained" className="add-task-btn"
+          onClick={() => { setEditingTask(null); setModalOpen(true); }}>
+          Add Task
+        </Button>
       </Box>
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 2 }}>
+      <Box className="task-grid">
         {tasks.map((t) => (
-          <Paper key={t._id} className="task-card" sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <Typography variant="h6">{t.title}</Typography>
-              <Box>
+          <Paper key={t._id} className="task-card">
+            <Box className="task-card-header">
+              <Typography className="task-title">{t.title}</Typography>
+
+              <Box className="task-icons">
                 <IconButton onClick={() => { setEditingTask(t); setModalOpen(true); }} size="small">
                   <EditIcon />
                 </IconButton>
+
                 {user?.role === 'admin' && (
                   <IconButton onClick={() => handleDelete(t._id)} size="small">
                     <DeleteIcon />
@@ -74,20 +79,23 @@ export default function Dashboard(){
                 )}
               </Box>
             </Box>
-            <Typography variant="body2">{t.description}</Typography>
-            <Typography variant="caption">
+
+            <Typography className="task-desc">{t.description}</Typography>
+
+            <Typography className="task-date">
               {t.status} — {dayjs(t.createdAt).format('DD MMM YYYY')}
             </Typography>
           </Paper>
+
         ))}
       </Box>
 
 
       <AddEditTask
         open={modalOpen}
-        onClose={()=>setModalOpen(false)}
+        onClose={() => setModalOpen(false)}
         initialData={editingTask}
-        onSaved={()=>{ setModalOpen(false); load(page); }}
+        onSaved={() => { setModalOpen(false); load(page); }}
         headerName={user?.name || user?.email}
         remainingCount={tasks.length}
       />
@@ -104,10 +112,10 @@ export default function Dashboard(){
       </Dialog>
 
       {/* simple pagination */}
-      <Box sx={{display:'flex', justifyContent:'center', mt:3, gap:1}}>
-        <Button disabled={page<=1} onClick={()=>load(page-1)}>Prev</Button>
-        <Typography sx={{p:1}}>{page} / {pages}</Typography>
-        <Button disabled={page>=pages} onClick={()=>load(page+1)}>Next</Button>
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3, gap: 1 }}>
+        <Button disabled={page <= 1} onClick={() => load(page - 1)}>Prev</Button>
+        <Typography sx={{ p: 1 }}>{page} / {pages}</Typography>
+        <Button disabled={page >= pages} onClick={() => load(page + 1)}>Next</Button>
       </Box>
     </Container>
   );

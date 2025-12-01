@@ -53,13 +53,7 @@ code {
   transition: width 0.3s ease;
 }
 
-.task-card:hover::after {
-  width: 100%;
-}
-.task-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-}
+
 .heading-class {
   position: relative;
   font-weight: 700;
@@ -73,4 +67,99 @@ code {
  width: 100%;
   background: rgb(25, 118, 210);
   border-radius: 50px;
+}
+/* Background */
+body {
+  background: #f5f7fb;
+}
+
+/* Task Grid Improvements */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Task Card */
+.task-card {
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  border-left: 5px solid #1976d2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: all 0.25s ease-in-out;
+}
+
+/* Hover effect */
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Task Title */
+.task-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Icon styles */
+.task-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.task-icons svg {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.task-icons svg:hover {
+  opacity: 1;
+  color: #1976d2;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  color: #6a6a6a;
+  font-weight: 500;
+}
+
+.pagination span {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Add Task button */
+.add-task-btn {
+  background-color: #1976d2 !important;
+  color: white !important;
+  padding: 8px 20px !important;
+  border-radius: 8px !important;
+}
+
+.add-task-btn:hover {
+  background-color: #115293 !important;
+}
+
+/* Header */
+.header {
+  background:#1976d2;
+  color:white;
+  padding:12px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
