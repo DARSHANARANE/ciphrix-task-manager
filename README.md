@@ -86,7 +86,7 @@ Tasks
   PUT /api/tasks/:id
   DELETE /api/tasks/:id
 
-
+---
 
 ## 👨‍💻 Author
 
