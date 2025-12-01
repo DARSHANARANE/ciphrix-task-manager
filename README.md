@@ -57,7 +57,7 @@ ciphrix-task-manager/
 git clone https://github.com/DARSHANARANE/ciphrix-task-manager.git
 cd ciphrix-task-manager
 
-**1) 🔧 Backend Setup (task-manager-backend/)**
+1) 🔧 Backend Setup (task-manager-backend/)
   1. cd task-manager-backend
   2. npm install
   3. Create .env file
@@ -66,7 +66,7 @@ cd ciphrix-task-manager
       PORT=5000
  4. npm start
  -----
-**2) 💻 Frontend Setup (client/)**
+2) 💻 Frontend Setup (client/)
    1. cd task-manager-backend
    2. npm install
    3. Create .env file
@@ -75,7 +75,7 @@ cd ciphrix-task-manager
 
 -----
 
-**🔗 API Endpoints**
+🔗 API Endpoints
 Auth
   POST /api/auth/signup
   POST /api/auth/signin
@@ -88,7 +88,7 @@ Tasks
 
 
 
-👨‍💻 **Author**
+## 👨‍💻 Author
 
-**Darshana Rane**
-**Frontend Developer | React Specialist**
+  Darshana Rane
+  Frontend Developer | React Specialist
